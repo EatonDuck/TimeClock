@@ -1,0 +1,46 @@
+name: Update Rebel data
+
+# Reads unlvrebels.com on GitHub's servers (where browser CORS limits don't apply)
+# and commits data/rebels.json, which the signage page loads from its own origin.
+on:
+  schedule:
+    - cron: '*/15 * * * *'      # every 15 min (GitHub may delay scheduled runs by several minutes)
+  workflow_dispatch:            # lets you press "Run workflow" by hand in the Actions tab
+
+permissions:
+  contents: write               # needed so the job can commit data/rebels.json
+
+concurrency:
+  group: update-rebel-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install parser
+        run: npm install --no-save --no-package-lock cheerio@1.0.0
+
+      # Exits with an error (red run, GitHub emails you) if nothing could be read from the site.
+      - name: Collect calendar + news
+        run: node scripts/update-data.mjs
+
+      - name: Commit if changed
+        run: |
+          if [[ -n "$(git status --porcelain data/rebels.json)" ]]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/rebels.json
+            git commit -m "Update Rebel data"
+            git pull --rebase origin "${{ github.ref_name }}"
+            git push
+          else
+            echo "No data changes."
+          fi
