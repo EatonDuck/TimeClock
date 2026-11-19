@@ -1,5 +1,148 @@
 {
- "generatedAt": null,
+ "generatedAt": "2026-11-19T22:50:42.659Z",
+ "timezone": "America/Los_Angeles",
+ "coveredThrough": null,
  "events": [],
- "news": []
+ "news": [
+  {
+   "title": "Runnin' Rebels Fall To Auburn 86-71 At Players Era 8",
+   "slug": "mens-basketball-runnin-rebels-fall-to-auburn-86-71-at-players-era-8",
+   "url": "https://unlvrebels.com/news/2026/11/18/mens-basketball-runnin-rebels-fall-to-auburn-86-71-at-players-era-8",
+   "publishedAt": "2026-11-18T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Rebels Earn Four-Set Road Victory Over San José State",
+   "slug": "womens-volleyball-rebels-earn-four-set-road-victory-over-san-jos-state",
+   "url": "https://unlvrebels.com/news/2026/11/18/womens-volleyball-rebels-earn-four-set-road-victory-over-san-jos-state",
+   "publishedAt": "2026-11-18T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Rebel Duo Drops NCAA Match",
+   "slug": "mens-tennis-rebel-duo-drops-ncaa-match",
+   "url": "https://unlvrebels.com/news/2026/11/18/mens-tennis-rebel-duo-drops-ncaa-match",
+   "publishedAt": "2026-11-18T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Women's Golf Signs Two Local Standouts",
+   "slug": "womens-golf-rebels-sign-two-local-standouts",
+   "url": "https://unlvrebels.com/news/2026/11/18/womens-golf-rebels-sign-two-local-standouts",
+   "publishedAt": "2026-11-18T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Arnold Named Raising Cane's Outstanding Rebel Of The Week, published November 18, 2026",
+   "slug": "general-arnold-named-raising-canes-outstanding-rebel-of-the-week",
+   "url": "https://unlvrebels.com/news/2026/11/18/general-arnold-named-raising-canes-outstanding-rebel-of-the-week",
+   "publishedAt": "2026-11-18T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Runnin' Rebels Suffer First Loss Of Season To No. 11/9 Kansas At Players Era 8, published November 17, 2026",
+   "slug": "mens-basketball-runnin-rebels-suffer-first-loss-of-season-to-no-11-9-kansas-at-players-era-8",
+   "url": "https://unlvrebels.com/news/2026/11/17/mens-basketball-runnin-rebels-suffer-first-loss-of-season-to-no-11-9-kansas-at-players-era-8",
+   "publishedAt": "2026-11-17T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Lady Rebels Drop 74-72 Against Rice, published November 17, 2026",
+   "slug": "womens-basketball-lady-rebels-drop-74-72-against-rice",
+   "url": "https://unlvrebels.com/news/2026/11/17/womens-basketball-lady-rebels-drop-74-72-against-rice",
+   "publishedAt": "2026-11-17T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Maksimovic Falls At NCAA Singles Championship, published November 17, 2026",
+   "slug": "mens-tennis-maksimovic-falls-at-ncaa-singles-championship",
+   "url": "https://unlvrebels.com/news/2026/11/17/mens-tennis-maksimovic-falls-at-ncaa-singles-championship",
+   "publishedAt": "2026-11-17T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Shayaan Kim Signs With Rebel Men's Golf Program, published November 17, 2026",
+   "slug": "mens-golf-shayaan-kim-signs-with-rebel-program",
+   "url": "https://unlvrebels.com/news/2026/11/17/mens-golf-shayaan-kim-signs-with-rebel-program",
+   "publishedAt": "2026-11-17T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "UNLV Softball Signs Eight For Incoming Class Of 2027, published November 17, 2026",
+   "slug": "unlv-softball-signs-eight-for-incoming-class-of-2027",
+   "url": "https://unlvrebels.com/news/2026/11/17/unlv-softball-signs-eight-for-incoming-class-of-2027",
+   "publishedAt": "2026-11-17T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Jackson Action: QB Honored Again By Earl Campbell Award, published November 17, 2026",
+   "slug": "football-jackson-action-qb-honored-again-by-earl-campbell-award",
+   "url": "https://unlvrebels.com/news/2026/11/17/football-jackson-action-qb-honored-again-by-earl-campbell-award",
+   "publishedAt": "2026-11-17T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Rebels Close Out Regular Season On The Road, published November 17, 2026",
+   "slug": "womens-volleyball-rebels-close-out-regular-season-on-the-road",
+   "url": "https://unlvrebels.com/news/2026/11/17/womens-volleyball-rebels-close-out-regular-season-on-the-road",
+   "publishedAt": "2026-11-17T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "GAME 11: Rebs Off To San Jose State For Road Finale, published November 16, 2026",
+   "slug": "football-game-11-rebs-off-to-san-jose-state-for-road-finale",
+   "url": "https://unlvrebels.com/news/2026/11/16/football-game-11-rebs-off-to-san-jose-state-for-road-finale",
+   "publishedAt": "2026-11-16T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Men's Tennis Starts NCAA Play Tuesday In Georgia, published November 16, 2026",
+   "slug": "mens-tennis-starts-ncaa-play-tuesday-in-georgia",
+   "url": "https://unlvrebels.com/news/2026/11/16/mens-tennis-starts-ncaa-play-tuesday-in-georgia",
+   "publishedAt": "2026-11-16T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "UNLV To Open 2027 Season At Home Against CSU, published November 16, 2026",
+   "slug": "football-unlv-to-open-2027-season-at-home-against-csu",
+   "url": "https://unlvrebels.com/news/2026/11/16/football-unlv-to-open-2027-season-at-home-against-csu",
+   "publishedAt": "2026-11-16T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Runnin' Rebels Open Players Era 8 Tuesday Night Against No. 11/9 Kansas, published November 16, 2026",
+   "slug": "mens-basketball-runnin-rebels-open-players-era-8-tuesday-night-against-no-11-9-kansas",
+   "url": "https://unlvrebels.com/news/2026/11/16/mens-basketball-runnin-rebels-open-players-era-8-tuesday-night-against-no-11-9-kansas",
+   "publishedAt": "2026-11-16T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Miles, Kiss Earn Old Trapper Mountain West Men's Basketball Weekly Honors, published November 16, 2026",
+   "slug": "miles-kiss-earn-old-trapper-mountain-west-mens-basketball-weekly-honors",
+   "url": "https://unlvrebels.com/news/2026/11/16/miles-kiss-earn-old-trapper-mountain-west-mens-basketball-weekly-honors",
+   "publishedAt": "2026-11-16T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Lady Rebels Back On The Court To Host Rice On Tuesday, published November 16, 2026",
+   "slug": "womens-basketball-lady-rebels-back-on-the-court-to-host-rice-on-tuesday",
+   "url": "https://unlvrebels.com/news/2026/11/16/womens-basketball-lady-rebels-back-on-the-court-to-host-rice-on-tuesday",
+   "publishedAt": "2026-11-16T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Football Rebels Take Three Of Four MW Weekly Honors, published November 15, 2026",
+   "slug": "football-rebels-take-three-of-four-mw-weekly-honors",
+   "url": "https://unlvrebels.com/news/2026/11/15/football-rebels-take-three-of-four-mw-weekly-honors",
+   "publishedAt": "2026-11-15T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Rebels Dealt Heartbreaking Defeat In Mountain West Championship, published November 15, 2026",
+   "slug": "mens-soccer-rebels-dealt-heartbreaking-defeat-in-mountain-west-championship",
+   "url": "https://unlvrebels.com/news/2026/11/15/mens-soccer-rebels-dealt-heartbreaking-defeat-in-mountain-west-championship",
+   "publishedAt": "2026-11-15T20:00:00.000Z",
+   "precise": false
+  }
+ ]
 }
