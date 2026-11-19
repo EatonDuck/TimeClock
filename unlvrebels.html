@@ -244,6 +244,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     .ev-card { animation: pageSwap 0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .no-anim .ev-card { animation: none; }   /* background refreshes must not replay the entrance animation */
 
     .pg-dot {
       width: 16px; height: 16px; border-radius: 9999px;
@@ -518,6 +519,20 @@
       let hh = parseInt(g('hour'), 10); if (hh === 24) hh = 0;
       return { ds: `${g('year')}-${g('month')}-${g('day')}`, minutes: hh * 60 + parseInt(g('minute'), 10) };
     }
+    // 'YYYY-MM-DD' + a Las Vegas clock time -> real epoch ms (handles PST/PDT switches)
+    function tzOffsetMs(utcMs) {
+      const p = new Intl.DateTimeFormat('en-US', { timeZone: TZ, hourCycle: 'h23', year: 'numeric', month: '2-digit',
+        day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).formatToParts(new Date(utcMs));
+      const g = t => parseInt(p.find(x => x.type === t).value, 10);
+      return Date.UTC(g('year'), g('month') - 1, g('day'), g('hour'), g('minute'), g('second')) - Math.floor(utcMs / 1000) * 1000;
+    }
+    function lvEpoch(ds, hh = 12, mm = 0) {
+      const [y, m, d] = ds.split('-').map(Number);
+      const guess = Date.UTC(y, m - 1, d, hh, mm);
+      let t = guess - tzOffsetMs(guess);
+      t = guess - tzOffsetMs(t);
+      return t;
+    }
     function addDays(ds, n) {
       const [y, m, d] = ds.split('-').map(Number);
       return new Date(Date.UTC(y, m - 1, d + n, 12)).toISOString().slice(0, 10);
@@ -577,15 +592,21 @@
       return Number.isFinite(v) ? Math.min(1200, Math.max(40, v)) : TICKER_SPEED_DEFAULT;
     })();
     const TICKER_SEPARATOR = '<span class="tk-sep" aria-hidden="true">◆</span>';
-    let lastGoodTickerItems = null;
+    let tickerSig = '';        // what is on screen now; the scroll only restarts when this changes
+    let tickerRenderId = 0;    // lets a newer render cancel an older, slower measure() (this was a real race)
 
     function renderTicker(items) {
       const track = document.getElementById('bottom-ticker-track');
       if (!track || !items.length) return;
+      const sig = JSON.stringify(items.map(i => [i.badge, i.title, i.when]));
+      if (sig === tickerSig) return;                       // nothing visible changed: don't make the marquee jump
+      tickerSig = sig;
+      const myId = ++tickerRenderId;
       const unitHtml = items.map(buildTickerItemHtml).join(TICKER_SEPARATOR) + TICKER_SEPARATOR;
       track.style.animation = 'none';
       track.innerHTML = unitHtml;
       const measure = () => {
+        if (myId !== tickerRenderId) return;               // a newer render replaced this one
         const unitW = track.scrollWidth;
         const viewW = track.parentElement.clientWidth || 3000;
         if (!unitW) return;
@@ -603,21 +624,24 @@
       }
     }
 
-
     /* ------------------------------------------------------------------------
        3. REBEL ATHLETICS ENGINE  (https://unlvrebels.com  +  /calendar)
-       - Live: reads the Composite Calendar page (upcoming events, opponent logos,
-         ticket / watch / listen / stats flags) and the news stories, through a
-         short chain of public CORS relays (browsers block direct cross-site reads).
-       - Fallback: a built-in snapshot taken from those pages on Nov 18, 2026.
-         The badges always say LIVE or SNAPSHOT so you know which one you see.
-       - NOTE: the calendar page lists only the NEXT 8 events, so days beyond the
-         last listed event show "not listed yet" instead of "no events".
+       DATA FLOW (a static GitHub Pages site cannot read unlvrebels.com directly: no CORS headers)
+         1. A GitHub Action (scripts/update-data.mjs) reads /calendar, /archives and the news
+            pages on GitHub's servers every ~15 min and commits data/rebels.json.
+         2. This page fetches ./data/rebels.json (same origin, so no CORS) every 10 min.
+         3. Only if that file is missing/unreadable does the page fall back to the old public
+            CORS relays, and only if those fail too does it use the built-in snapshot.
+       The badges always say LIVE / DELAYED / LIVE (RELAY) / SNAPSHOT so you know which one you see.
+       NOTE: the calendar page lists only the NEXT 8 events, so days beyond the last listed
+       event show "not listed yet" instead of "no events".
        ------------------------------------------------------------------------ */
     const TZ = 'America/Los_Angeles';
     const ATH_BASE = 'https://unlvrebels.com';
     const SNAPSHOT_AS_OF = 'Nov 18';
     const SNAPSHOT_COVERS_THROUGH = '2026-11-23';
+    const FEED_URL = 'data/rebels.json';   // written by .github/workflows/update-data.yml
+    const FEED_STALE_HOURS = 8;            // feed older than this is labelled DELAYED (the Action refreshes it at least every 6h)
 
     const PAGE_DURATION_MS = 14000;
     const UPCOMING_DAYS = 5;
@@ -666,6 +690,8 @@
     let COVERED_THROUGH = SNAPSHOT_COVERS_THROUGH;
     let NEWS = [];                   // [{title,slug,ts,img?:[urls]}]
     let lastLiveSync = null;
+    let FEED_STATE = 'snapshot';     // 'live' | 'stale' | 'relay' | 'snapshot'
+    let refreshing = false;
 
     /* ---------- tiny helpers ---------- */
     function stripHtml(html) {
@@ -682,13 +708,6 @@
     function truncateText(str, max) {
       const t = String(str || '').replace(/\s+/g, ' ').trim();
       return t.length > max ? t.slice(0, max - 1).trimEnd() + '…' : t;
-    }
-    function timeAgo(ts) {
-      const diffMins = Math.max(1, Math.floor((Date.now() - ts) / 60000));
-      if (diffMins < 60) return `${diffMins}m ago`;
-      const h = Math.floor(diffMins / 60);
-      if (h < 24) return `${h}h ago`;
-      return `${Math.floor(h / 24)}d ago`;
     }
     function fmtMin(min) {
       const h24 = Math.floor(min / 60), m = min % 60;
@@ -721,7 +740,7 @@
       EVENTS_SOURCE = 'snapshot';
       COVERED_THROUGH = SNAPSHOT_COVERS_THROUGH;
       NEWS = SNAPSHOT_NEWS.map(n => ({
-        title: n.title, slug: n.slug, ts: Date.UTC(+n.d.slice(0, 4), +n.d.slice(5, 7) - 1, +n.d.slice(8, 10), 20, 0),
+        title: n.title, slug: n.slug, ts: lvEpoch(n.d, 12, 0), approx: true, snap: true,
         img: n.img ? photoUrls(n.img) : null
       }));
     }
@@ -778,37 +797,80 @@
           const src = im.getAttribute('src');
           img = [src.replace(/&height=\d+/, '&width=1600').replace(/&width=\d+&width=/, '&width='), src];
         }
-        out.push({ title, slug, ts: Date.UTC(+m[1], +m[2] - 1, +m[3], 20, 0), img });
+        out.push({ title, slug, ts: lvEpoch(`${m[1]}-${String(m[2]).padStart(2, '0')}-${String(m[3]).padStart(2, '0')}`, 12, 0), approx: true, img });
       });
       return out;
     }
 
-    async function refreshCalendar() {
+    /* ---------- same-origin feed written by the GitHub Action (no CORS involved) ---------- */
+    async function loadFeedJson() {
+      try {
+        const feed = JSON.parse(await fetchText(bust(FEED_URL), 8000));
+        return feed && Number.isFinite(Date.parse(feed.generatedAt)) ? feed : null;   // the empty seed file has generatedAt:null
+      } catch (e) { return null; }
+    }
+    function applyFeed(feed) {
+      let used = false;
+      if (Array.isArray(feed.events) && feed.events.length) {
+        EVENTS = feed.events.map(e => makeEvent(e.ds, e.timeText, e.sport, e.rel, e.opp, e.logo, e.flags));
+        EVENTS_SOURCE = 'live';
+        COVERED_THROUGH = feed.coveredThrough || EVENTS.map(e => e.ds).sort().slice(-1)[0];
+        used = true;
+      }
+      if (Array.isArray(feed.news)) {
+        // Replace (not merge): once the live feed works, the old built-in snapshot headlines must not linger.
+        NEWS = feed.news
+          .map(n => ({ title: n.title, slug: n.slug, url: n.url, ts: Date.parse(n.publishedAt), approx: n.precise === false, img: null }))
+          .filter(n => n.title && Number.isFinite(n.ts));
+        used = true;
+      }
+      if (used) {
+        lastLiveSync = new Date(feed.generatedAt);
+        FEED_STATE = (Date.now() - lastLiveSync.getTime()) / 3600000 > FEED_STALE_HOURS ? 'stale' : 'live';
+      }
+      return used;
+    }
+
+    /* ---------- fallback only: public CORS relays (third-party, best effort) ---------- */
+    async function refreshViaRelays() {
       const html = await fetchViaRelays(bust(ATH_BASE + '/calendar'), t => /Upcoming Event|Composite Calendar/i.test(t));
+      let gotNews = false;
+      const takeNews = list => {
+        if (!list.length) return;
+        if (!gotNews) { NEWS = NEWS.filter(n => !n.snap); gotNews = true; }   // drop snapshot headlines once real ones arrive
+        mergeNews(list);
+      };
       if (html) {
         const evs = await parseCalendarHtml(html);
         if (evs.length) {
           EVENTS = evs; EVENTS_SOURCE = 'live';
           COVERED_THROUGH = evs.map(e => e.ds).sort().slice(-1)[0];
-          lastLiveSync = new Date();
+          lastLiveSync = new Date(); FEED_STATE = 'relay';
         }
-        const news = newsFromHtml(html);
-        if (news.length) mergeNews(news);
+        takeNews(newsFromHtml(html));
       }
-      renderAll();
+      if (!gotNews) {
+        const home = await fetchViaRelays(bust(ATH_BASE + '/'), t => /\/news\/20\d\d\//.test(t));
+        if (home) takeNews(newsFromHtml(home));
+      }
+      if (gotNews && FEED_STATE === 'snapshot') FEED_STATE = 'relay';
     }
     function mergeNews(list) {
       const map = new Map(NEWS.map(n => [n.title.toLowerCase(), n]));
       list.forEach(n => map.set(n.title.toLowerCase(), n));
       NEWS = Array.from(map.values()).sort((a, b) => b.ts - a.ts).slice(0, 24);
     }
-    async function refreshNews() {
-      for (const path of ['/', '/calendar']) {
-        const html = await fetchViaRelays(bust(ATH_BASE + path), t => /\/news\/20\d\d\//.test(t));
-        if (html) { const news = newsFromHtml(html); if (news.length) { mergeNews(news); break; } }
-      }
-      renderTicker(buildTickerItems());
-      updateNewsStatus();
+    async function refreshFeeds() {
+      if (refreshing) return;
+      refreshing = true;
+      try {
+        const feed = await loadFeedJson();
+        if (feed && applyFeed(feed)) { renderAll(); rebuildTicker(); return; }
+        // Feed file missing or unreadable: show what we have (clearly badged), then try the relays.
+        renderAll(); rebuildTicker();
+        await refreshViaRelays();
+        renderAll(); rebuildTicker();
+      } finally { refreshing = false; }
     }
     function bust(url) { return url + (url.includes('?') ? '&' : '?') + '_=' + Date.now(); }
 
@@ -943,22 +1005,8 @@
         </div>
       </div>`;
     }
-    function newsFiller(n, i) {
-      const imgUrl = n.img ? n.img[0] : '';
-      const local = REBEL_PHOTOS[(i * 7 + 3) % REBEL_PHOTOS.length];
-      return `<div class="ev-card flex items-stretch rounded-[30px] border-[2px] border-[#141414]/10 bg-white/92 shadow-lg overflow-hidden min-h-0" style="animation-delay:${i * 60}ms">
-        <div class="w-[280px] shrink-0 bg-[#141414] relative overflow-hidden" style="background-image:${cssUrl(local.u)};background-size:cover;background-position:${local.x}% ${local.y}%">
-          ${imgUrl ? `<img src="${escapeHtml(imgUrl)}" referrerpolicy="no-referrer" alt="" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">` : ''}
-          <span class="absolute left-[14px] top-[14px] text-[20px] font-black tracking-[0.12em] bg-[#B10202] text-white rounded-full px-[14px] py-[2px]">LATEST</span>
-        </div>
-        <div class="flex-1 min-w-0 px-[36px] py-[16px] flex flex-col justify-center gap-[8px]">
-          <div class="text-[24px] font-extrabold tracking-[0.12em] text-[#B10202] uppercase">${escapeHtml(sportLabel(n.slug))} &middot; Rebel Sports</div>
-          <div class="text-[40px] font-extrabold leading-[1.12] text-[#000000] line-clamp-2">${escapeHtml(n.title)}</div>
-        </div>
-      </div>`;
-    }
-
-    function renderToday(resetPage) {
+    let lastTodayHtml = '';
+    function renderToday(resetPage, quiet) {
       const { ds, minutes } = laParts();
       const holiday = holidayFor(ds);
       document.getElementById('today-date').textContent = fmtDS(ds, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
@@ -972,10 +1020,11 @@
         document.getElementById('today-dots').innerHTML = Array.from({ length: n }, (_, i) => `<span class="pg-dot ${i === p - 1 ? 'active' : ''}"></span>`).join('');
       };
       document.getElementById('today-source').textContent =
-        EVENTS_SOURCE === 'live' ? 'Live from unlvrebels.com' : `unlvrebels.com · snapshot ${SNAPSHOT_AS_OF}`;
+        EVENTS_SOURCE === 'live' ? (FEED_STATE === 'stale' ? 'Feed delayed · unlvrebels.com' : 'Live from unlvrebels.com') : `unlvrebels.com · snapshot ${SNAPSHOT_AS_OF}`;
       grid.style.gridTemplateColumns = '1fr'; grid.style.gridTemplateRows = 'repeat(3, minmax(0,1fr))';
 
       if (!isCovered(ds)) {
+        lastTodayHtml = '';
         grid.innerHTML = noEventsGraphic('SCHEDULE NOT LOADED', 'Today’s games aren’t available right now', 'unlvrebels.com/calendar');
         document.getElementById('today-count').textContent = '--'; todaySlots = []; setPager(1, 1);
         return;
@@ -987,6 +1036,7 @@
 
       if (!all.length || !live.length) {
         const head = !all.length ? 'NO EVENTS TODAY' : 'THAT’S A WRAP FOR TODAY';
+        lastTodayHtml = '';
         grid.innerHTML = noEventsGraphic(head, nextUpText(ds), holiday ? 'UNLV Holiday · ' + holiday : 'unlvrebels.com/calendar');
         todaySlots = []; setPager(1, 1);
         return;
@@ -998,17 +1048,16 @@
       if (resetPage || todayPage >= pages) todayPage = 0;
       if (resetPage) pageStart = Date.now();
       const slice = live.slice(todayPage * perPage, todayPage * perPage + perPage);
-      let html = slice.map((e, i) => eventCard(e, minutes, dense, i)).join('');
-      if (!dense) {                                   // fill spare rows with the latest Rebel news (photos)
-        const fillers = NEWS.filter(n => n.img).concat(NEWS.filter(n => !n.img)).slice(0, perPage - slice.length);
-        html += fillers.map((n, i) => newsFiller(n, slice.length + i)).join('');
+      const html = slice.map((e, i) => eventCard(e, minutes, dense, i)).join('');
+      if (html !== lastTodayHtml) {                   // only touch the DOM when something visibly changed (no 30s flicker)
+        grid.classList.toggle('no-anim', !!quiet);
+        grid.innerHTML = html;
+        lastTodayHtml = html;
       }
-      grid.innerHTML = html;
       todaySlots = live;
       setPager(todayPage + 1, pages);
     }
     function nextTodayPage() {
-      const { minutes } = laParts();
       const dense = todaySlots.length > 3, per = dense ? 6 : 3;
       const pages = Math.max(1, Math.ceil(todaySlots.length / per));
       todayPage = (todayPage + 1) % pages; pageStart = Date.now(); renderToday(false);
@@ -1024,7 +1073,7 @@
       requestAnimationFrame(animateTodayProgress);
     }
     function updateSourceBadges() {
-      document.getElementById('upcoming-source-label').textContent = EVENTS_SOURCE === 'live' ? 'LIVE · UNLVREBELS.COM' : 'SNAPSHOT · UNLVREBELS.COM';
+      document.getElementById('upcoming-source-label').textContent = (EVENTS_SOURCE === 'live' ? (FEED_STATE === 'stale' ? 'DELAYED' : 'LIVE') : 'SNAPSHOT') + ' · UNLVREBELS.COM';
       document.getElementById('upcoming-updated').textContent = lastLiveSync
         ? 'Synced ' + lastLiveSync.toLocaleTimeString('en-US', { timeZone: TZ, hour: 'numeric', minute: '2-digit' }) + ' PT'
         : `Snapshot ${SNAPSHOT_AS_OF}`;
@@ -1078,7 +1127,9 @@
     /* ------------------------------------------------------------------------
        4. REBEL SPORTS TICKER  (headlines from unlvrebels.com; date is read from each story's URL)
        ------------------------------------------------------------------------ */
-    const NEWS_MAX_AGE_DAYS = 7;
+    const TICKER_WINDOW_HOURS = 48;     // news: nothing older than this, measured from "now" in Las Vegas time
+    const TICKER_UPCOMING_HOURS = 48;   // also show games starting within this many hours ahead (set 0 for news only)
+    const HOUR_MS = 3600000;
     const SPORT_BY_SLUG = [['mens-basketball', "MEN'S BASKETBALL"], ['womens-basketball', "WOMEN'S BASKETBALL"], ['womens-volleyball', "WOMEN'S VOLLEYBALL"],
       ['mens-tennis', "MEN'S TENNIS"], ['womens-tennis', "WOMEN'S TENNIS"], ['football', 'FOOTBALL'], ['baseball', 'BASEBALL'], ['softball', 'SOFTBALL'],
       ['mens-soccer', "MEN'S SOCCER"], ['womens-soccer', "WOMEN'S SOCCER"], ['mens-golf', "MEN'S GOLF"], ['womens-golf', "WOMEN'S GOLF"],
@@ -1093,45 +1144,85 @@
       'Support Rebel student-athletes: Rebel Athletic Fund — rebelathleticfund.com',
       'Full all-sport schedule: unlvrebels.com/calendar'
     ];
-    function buildTickerItems() {
-      const fresh = NEWS.filter(n => (Date.now() - n.ts) / 86400000 <= NEWS_MAX_AGE_DAYS).sort((a, b) => b.ts - a.ts);
-      if (fresh.length) return fresh.map(n => ({ badge: sportLabel(n.slug), title: n.title, when: dayLabel(n.ts) }));
-      return EVERGREEN.map(t => ({ badge: 'REBELS', title: t, when: '' }));
-    }
-    function dayLabel(ts) {
-      const ds = new Date(ts).toISOString().slice(0, 10);
+    function dayLabel(ts) {                                   // 'Today' / 'Yesterday' / 'Nov 17' in LAS VEGAS time
+      const ds = laParts(new Date(ts)).ds;
       const diff = Math.round((dsToDate(todayDS()) - dsToDate(ds)) / 86400000);
       return diff <= 0 ? 'Today' : diff === 1 ? 'Yesterday' : fmtDS(ds, { month: 'short', day: 'numeric' });
     }
+    // A story with an exact publish time is judged on that time. A story that only has a DATE
+    // (relay/snapshot fallbacks) is kept only if its whole day is inside the window, so a
+    // date-only item can never sneak in as "older than 48h".
+    function newsInWindow(n, now = Date.now()) {
+      const t = n.approx ? lvEpoch(laParts(new Date(n.ts)).ds, 0, 0) : n.ts;
+      return t >= now - TICKER_WINDOW_HOURS * HOUR_MS && t <= now + 10 * 60000;
+    }
+    function ageLabel(n, now) {
+      if (n.approx) return dayLabel(n.ts);
+      const h = Math.floor((now - n.ts) / HOUR_MS);
+      return h < 1 ? 'Under 1h ago' : h < 24 ? `${h}h ago` : dayLabel(n.ts);
+    }
+    function upcomingTickerItems(now = Date.now()) {
+      if (TICKER_UPCOMING_HOURS <= 0) return [];
+      const horizon = now + TICKER_UPCOMING_HOURS * HOUR_MS;
+      const today = laParts(new Date(now)).ds;
+      return EVENTS.map(e => {
+          const timed = e.min !== null;
+          const start = timed ? lvEpoch(e.ds, Math.floor(e.min / 60), e.min % 60) : lvEpoch(e.ds, 0, 0);
+          const end = timed ? start + 3 * HOUR_MS : lvEpoch(e.ds, 23, 59);   // timed games count as live for ~3h
+          return { e, timed, start, end };
+        })
+        .filter(x => x.end >= now && x.start <= horizon)
+        .sort((a, b) => a.start - b.start)
+        .map(({ e, timed, start }) => {
+          const day = e.ds === today ? 'Today' : e.ds === addDays(today, 1) ? 'Tomorrow' : fmtDS(e.ds, { weekday: 'short', month: 'short', day: 'numeric' });
+          const t = timed ? fmtMin(e.min) : null;
+          const time = t ? `${t.t} ${t.ap} PT` : (/\bor\b/i.test(e.timeText) ? e.timeText.replace(/\s*PT/gi, '') + ' PT' : 'TBA');
+          const liveNow = timed && start <= now;
+          return {
+            badge: liveNow ? 'LIVE NOW' : 'UP NEXT',
+            badgeCls: liveNow ? 'bg-[#E31837] text-white' : 'bg-white text-[#B10202]',
+            title: `${e.sport}: ${eventTitle(e)}`,
+            when: `${day} · ${time}`
+          };
+        });
+    }
+    function buildTickerItems(now = Date.now()) {
+      const news = NEWS.filter(n => newsInWindow(n, now)).sort((a, b) => b.ts - a.ts)
+        .map(n => ({ badge: sportLabel(n.slug), title: n.title, when: ageLabel(n, now) }));
+      const items = news.concat(upcomingTickerItems(now));
+      // Nothing dated inside the window: show the standing links (never old headlines).
+      return items.length ? items : EVERGREEN.map(t => ({ badge: 'REBELS', title: t, when: '' }));
+    }
     function buildTickerItemHtml(item) {
       return `<span class="tk-item">
-          <span class="tk-badge bg-[#B10202] text-white">${escapeHtml(item.badge)}</span>
+          <span class="tk-badge ${item.badgeCls || 'bg-[#B10202] text-white'}">${escapeHtml(item.badge)}</span>
           <span class="tk-text">${escapeHtml(truncateText(item.title, 120))}</span>
           ${item.when ? `<span class="tk-age">${escapeHtml(item.when)}</span>` : ''}
         </span>`;
     }
     function updateNewsStatus() {
       const el = document.getElementById('feed-last-sync');
-      const fresh = NEWS.filter(n => (Date.now() - n.ts) / 86400000 <= NEWS_MAX_AGE_DAYS);
-      const t = new Date().toLocaleTimeString('en-US', { timeZone: TZ, hour: 'numeric', minute: '2-digit' });
-      el.textContent = fresh.length
-        ? `${fresh.length} STORIES · NEWEST ${dayLabel(Math.max(...fresh.map(n => n.ts))).toUpperCase()} · ${t} PT`
-        : 'NO RECENT STORIES · SHOWING LINKS';
+      const now = Date.now();
+      const stories = NEWS.filter(n => newsInWindow(n, now)).length;
+      const up = upcomingTickerItems(now).length;
+      const tag = { live: 'LIVE', stale: 'DELAYED', relay: 'LIVE · RELAY', snapshot: 'OFFLINE SNAPSHOT' }[FEED_STATE];
+      const t = new Date(now).toLocaleTimeString('en-US', { timeZone: TZ, hour: 'numeric', minute: '2-digit' });
+      el.textContent = [tag,
+        stories ? `${stories} ${stories === 1 ? 'STORY' : 'STORIES'} / ${TICKER_WINDOW_HOURS} HRS` : `NO STORIES IN LAST ${TICKER_WINDOW_HOURS} HRS`,
+        up ? `${up} UP NEXT` : null, `${t} PT`].filter(Boolean).join(' · ');
     }
+    function rebuildTicker() { renderTicker(buildTickerItems()); updateNewsStatus(); }
 
     /* ---------- boot ---------- */
     loadSnapshot();
-    renderAll();
-    renderTicker(buildTickerItems());
-    updateNewsStatus();
-    refreshCalendar().then(() => { renderTicker(buildTickerItems()); updateNewsStatus(); });
+    renderAll();                 // paint the schedule at once from the built-in snapshot (badged SNAPSHOT) ...
     setupPhotos();
-    refreshNews();
-    setInterval(refreshCalendar, 10 * 60 * 1000);
-    setInterval(refreshNews, 10 * 60 * 1000);
-    setInterval(() => renderToday(false), 30 * 1000);
+    refreshFeeds();              // ... then upgrade to live data. The ticker waits for this, so stale headlines never flash.
+    setInterval(refreshFeeds, 10 * 60 * 1000);
+    setInterval(() => renderToday(false, true), 30 * 1000);   // LIVE NOW / STARTS IN chips (quiet = no animation replay)
+    setInterval(rebuildTicker, 60 * 1000);                    // rolling window: items age out minute by minute
     let lastDS = todayDS();
-    setInterval(() => { const d = todayDS(); if (d !== lastDS) { lastDS = d; renderAll(); refreshCalendar(); } }, 20 * 1000);
+    setInterval(() => { const d = todayDS(); if (d !== lastDS) { lastDS = d; renderAll(); refreshFeeds(); } }, 20 * 1000);
     requestAnimationFrame(animateTodayProgress);
 
   </script>
