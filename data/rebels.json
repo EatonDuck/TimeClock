@@ -1,9 +1,23 @@
 {
- "generatedAt": "2026-11-20T18:02:32.459Z",
+ "generatedAt": "2026-11-20T20:06:44.294Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Lady Rebels Set For Saturday Afternoon Contest Against Rice",
+   "slug": "womens-basketball-lady-rebels-set-for-saturday-afternoon-contest-against-rice",
+   "url": "https://unlvrebels.com/news/2026/11/20/womens-basketball-lady-rebels-set-for-saturday-afternoon-contest-against-rice",
+   "publishedAt": "2026-11-20T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Rebels Complete Fall Ball",
+   "slug": "softball-rebels-complete-fall-ball",
+   "url": "https://unlvrebels.com/news/2026/11/20/softball-rebels-complete-fall-ball",
+   "publishedAt": "2026-11-20T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Runnin' Rebels Fall To Rutgers 89-70 In Players Era 8 Finale",
    "slug": "mens-basketball-runnin-rebels-fall-to-rutgers-89-70-in-players-era-8-finale",
@@ -19,14 +33,14 @@
    "precise": false
   },
   {
-   "title": "Runnin' Rebels Fall To Auburn 86-71 At Players Era 8",
+   "title": "Runnin' Rebels Fall To Auburn 86-71 At Players Era 8, published November 18, 2026",
    "slug": "mens-basketball-runnin-rebels-fall-to-auburn-86-71-at-players-era-8",
    "url": "https://unlvrebels.com/news/2026/11/18/mens-basketball-runnin-rebels-fall-to-auburn-86-71-at-players-era-8",
    "publishedAt": "2026-11-18T20:00:00.000Z",
    "precise": false
   },
   {
-   "title": "Rebels Earn Four-Set Road Victory Over San José State",
+   "title": "Rebels Earn Four-Set Road Victory Over San José State, published November 18, 2026",
    "slug": "womens-volleyball-rebels-earn-four-set-road-victory-over-san-jos-state",
    "url": "https://unlvrebels.com/news/2026/11/18/womens-volleyball-rebels-earn-four-set-road-victory-over-san-jos-state",
    "publishedAt": "2026-11-18T20:00:00.000Z",
@@ -142,20 +156,6 @@
    "slug": "womens-basketball-lady-rebels-back-on-the-court-to-host-rice-on-tuesday",
    "url": "https://unlvrebels.com/news/2026/11/16/womens-basketball-lady-rebels-back-on-the-court-to-host-rice-on-tuesday",
    "publishedAt": "2026-11-16T20:00:00.000Z",
-   "precise": false
-  },
-  {
-   "title": "Football Rebels Take Three Of Four MW Weekly Honors, published November 15, 2026",
-   "slug": "football-rebels-take-three-of-four-mw-weekly-honors",
-   "url": "https://unlvrebels.com/news/2026/11/15/football-rebels-take-three-of-four-mw-weekly-honors",
-   "publishedAt": "2026-11-15T20:00:00.000Z",
-   "precise": false
-  },
-  {
-   "title": "Rebels Dealt Heartbreaking Defeat In Mountain West Championship, published November 15, 2026",
-   "slug": "mens-soccer-rebels-dealt-heartbreaking-defeat-in-mountain-west-championship",
-   "url": "https://unlvrebels.com/news/2026/11/15/mens-soccer-rebels-dealt-heartbreaking-defeat-in-mountain-west-championship",
-   "publishedAt": "2026-11-15T20:00:00.000Z",
    "precise": false
   }
  ]
