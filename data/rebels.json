@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-19T22:50:42.659Z",
+ "generatedAt": "2026-11-20T03:31:51.324Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Rebels Close Season With Five-Set Win Over San José State",
+   "slug": "womens-volleyball-rebels-close-season-with-five-set-win-over-san-jos-state",
+   "url": "https://unlvrebels.com/news/2026/11/19/womens-volleyball-rebels-close-season-with-five-set-win-over-san-jos-state",
+   "publishedAt": "2026-11-19T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Runnin' Rebels Fall To Auburn 86-71 At Players Era 8",
    "slug": "mens-basketball-runnin-rebels-fall-to-auburn-86-71-at-players-era-8",
@@ -26,7 +33,7 @@
    "precise": false
   },
   {
-   "title": "Women's Golf Signs Two Local Standouts",
+   "title": "Women's Golf Signs Two Local Standouts, published November 18, 2026",
    "slug": "womens-golf-rebels-sign-two-local-standouts",
    "url": "https://unlvrebels.com/news/2026/11/18/womens-golf-rebels-sign-two-local-standouts",
    "publishedAt": "2026-11-18T20:00:00.000Z",
