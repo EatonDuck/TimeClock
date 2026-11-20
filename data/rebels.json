@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-20T03:31:51.324Z",
+ "generatedAt": "2026-11-20T05:42:13.945Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Runnin' Rebels Fall To Rutgers 89-70 In Players Era 8 Finale",
+   "slug": "mens-basketball-runnin-rebels-fall-to-rutgers-89-70-in-players-era-8-finale",
+   "url": "https://unlvrebels.com/news/2026/11/19/mens-basketball-runnin-rebels-fall-to-rutgers-89-70-in-players-era-8-finale",
+   "publishedAt": "2026-11-19T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Rebels Close Season With Five-Set Win Over San José State",
    "slug": "womens-volleyball-rebels-close-season-with-five-set-win-over-san-jos-state",
@@ -26,7 +33,7 @@
    "precise": false
   },
   {
-   "title": "Rebel Duo Drops NCAA Match",
+   "title": "Rebel Duo Drops NCAA Match, published November 18, 2026",
    "slug": "mens-tennis-rebel-duo-drops-ncaa-match",
    "url": "https://unlvrebels.com/news/2026/11/18/mens-tennis-rebel-duo-drops-ncaa-match",
    "publishedAt": "2026-11-18T20:00:00.000Z",
