@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-22T02:20:22.339Z",
+ "generatedAt": "2026-11-22T05:24:28.905Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Rebs Continue Road Dominance With Rare Win At San Jose State",
+   "slug": "football-rebs-continue-road-dominance-with-rare-win-at-san-jose-state",
+   "url": "https://unlvrebels.com/news/2026/11/21/football-rebs-continue-road-dominance-with-rare-win-at-san-jose-state",
+   "publishedAt": "2026-11-21T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Lady Rebels Roll Past Cincinnati 85-58",
    "slug": "womens-basketball-lady-rebels-roll-past-cincinnati-85-58",
@@ -26,7 +33,7 @@
    "precise": false
   },
   {
-   "title": "Runnin' Rebels Fall To Rutgers 89-70 In Players Era 8 Finale",
+   "title": "Runnin' Rebels Fall To Rutgers 89-70 In Players Era 8 Finale, published November 19, 2026",
    "slug": "mens-basketball-runnin-rebels-fall-to-rutgers-89-70-in-players-era-8-finale",
    "url": "https://unlvrebels.com/news/2026/11/19/mens-basketball-runnin-rebels-fall-to-rutgers-89-70-in-players-era-8-finale",
    "publishedAt": "2026-11-19T20:00:00.000Z",
@@ -134,13 +141,6 @@
    "title": "Men's Tennis Starts NCAA Play Tuesday In Georgia, published November 16, 2026",
    "slug": "mens-tennis-starts-ncaa-play-tuesday-in-georgia",
    "url": "https://unlvrebels.com/news/2026/11/16/mens-tennis-starts-ncaa-play-tuesday-in-georgia",
-   "publishedAt": "2026-11-16T20:00:00.000Z",
-   "precise": false
-  },
-  {
-   "title": "UNLV To Open 2027 Season At Home Against CSU, published November 16, 2026",
-   "slug": "football-unlv-to-open-2027-season-at-home-against-csu",
-   "url": "https://unlvrebels.com/news/2026/11/16/football-unlv-to-open-2027-season-at-home-against-csu",
    "publishedAt": "2026-11-16T20:00:00.000Z",
    "precise": false
   }
