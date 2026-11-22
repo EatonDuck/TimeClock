@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-22T15:17:27.118Z",
+ "generatedAt": "2026-11-22T18:20:53.064Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Runnin' Rebels Return Home Monday Night Against Eastern Washington",
+   "slug": "mens-basketball-runnin-rebels-return-home-monday-night-against-eastern-washington",
+   "url": "https://unlvrebels.com/news/2026/11/22/mens-basketball-runnin-rebels-return-home-monday-night-against-eastern-washington",
+   "publishedAt": "2026-11-22T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Rebs Continue Road Dominance With Rare Win At San Jose State",
    "slug": "football-rebs-continue-road-dominance-with-rare-win-at-san-jose-state",
@@ -26,7 +33,7 @@
    "precise": false
   },
   {
-   "title": "Rebels Complete Fall Ball",
+   "title": "Rebels Complete Fall Ball, published November 20, 2026",
    "slug": "softball-rebels-complete-fall-ball",
    "url": "https://unlvrebels.com/news/2026/11/20/softball-rebels-complete-fall-ball",
    "publishedAt": "2026-11-20T20:00:00.000Z",
