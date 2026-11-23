@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-23T15:32:40.038Z",
+ "generatedAt": "2026-11-23T18:33:21.882Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Harris Named Mountain West Offensive Player Of The Week",
+   "slug": "womens-volleyball-harris-named-mountain-west-offensive-player-of-the-week",
+   "url": "https://unlvrebels.com/news/2026/11/23/womens-volleyball-harris-named-mountain-west-offensive-player-of-the-week",
+   "publishedAt": "2026-11-23T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Runnin' Rebels Return Home Monday Night Against Eastern Washington",
    "slug": "mens-basketball-runnin-rebels-return-home-monday-night-against-eastern-washington",
@@ -26,16 +33,16 @@
    "precise": false
   },
   {
-   "title": "Lady Rebels Set For Saturday Afternoon Contest Against Rice",
-   "slug": "womens-basketball-lady-rebels-set-for-saturday-afternoon-contest-against-rice",
-   "url": "https://unlvrebels.com/news/2026/11/20/womens-basketball-lady-rebels-set-for-saturday-afternoon-contest-against-rice",
+   "title": "Rebels Complete Fall Ball, published November 20, 2026",
+   "slug": "softball-rebels-complete-fall-ball",
+   "url": "https://unlvrebels.com/news/2026/11/20/softball-rebels-complete-fall-ball",
    "publishedAt": "2026-11-20T20:00:00.000Z",
    "precise": false
   },
   {
-   "title": "Rebels Complete Fall Ball, published November 20, 2026",
-   "slug": "softball-rebels-complete-fall-ball",
-   "url": "https://unlvrebels.com/news/2026/11/20/softball-rebels-complete-fall-ball",
+   "title": "Lady Rebels Set For Saturday Afternoon Contest Against Rice, published November 20, 2026",
+   "slug": "womens-basketball-lady-rebels-set-for-saturday-afternoon-contest-against-rice",
+   "url": "https://unlvrebels.com/news/2026/11/20/womens-basketball-lady-rebels-set-for-saturday-afternoon-contest-against-rice",
    "publishedAt": "2026-11-20T20:00:00.000Z",
    "precise": false
   },
