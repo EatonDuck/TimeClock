@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-24T00:30:49.476Z",
+ "generatedAt": "2026-11-24T06:55:47.844Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Runnin' Rebels Bounce Back With 82-61 Victory Over Eastern Washington",
+   "slug": "mens-basketball-runnin-rebels-bounce-back-with-82-61-victory-over-eastern-washington",
+   "url": "https://unlvrebels.com/news/2026/11/23/mens-basketball-runnin-rebels-bounce-back-with-82-61-victory-over-eastern-washington",
+   "publishedAt": "2026-11-23T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "GAME 12: Cannon On The Line Saturday At Allegiant",
    "slug": "football-game-12-cannon-on-the-line-saturday-at-allegiant",
@@ -33,7 +40,7 @@
    "precise": false
   },
   {
-   "title": "Rebs Continue Road Dominance With Rare Win At San Jose State",
+   "title": "Rebs Continue Road Dominance With Rare Win At San Jose State, published November 21, 2026",
    "slug": "football-rebs-continue-road-dominance-with-rare-win-at-san-jose-state",
    "url": "https://unlvrebels.com/news/2026/11/21/football-rebs-continue-road-dominance-with-rare-win-at-san-jose-state",
    "publishedAt": "2026-11-21T20:00:00.000Z",
