@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-23T23:31:05.208Z",
+ "generatedAt": "2026-11-24T00:30:49.476Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "GAME 12: Cannon On The Line Saturday At Allegiant",
+   "slug": "football-game-12-cannon-on-the-line-saturday-at-allegiant",
+   "url": "https://unlvrebels.com/news/2026/11/23/football-game-12-cannon-on-the-line-saturday-at-allegiant",
+   "publishedAt": "2026-11-23T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Harris Named Mountain West Offensive Player Of The Week",
    "slug": "womens-volleyball-harris-named-mountain-west-offensive-player-of-the-week",
@@ -12,7 +19,7 @@
    "precise": false
   },
   {
-   "title": "Game Promotions Announced for Football vs. UNRGame Promotions Announced for Football vs. UNR",
+   "title": "Game Promotions Announced for Football vs. UNR, published November 23, 2026",
    "slug": "game-promotions-announced-for-football-vs-unr",
    "url": "https://unlvrebels.com/news/2026/11/23/game-promotions-announced-for-football-vs-unr",
    "publishedAt": "2026-11-23T20:00:00.000Z",
@@ -33,7 +40,7 @@
    "precise": false
   },
   {
-   "title": "Lady Rebels Roll Past Cincinnati 85-58",
+   "title": "Lady Rebels Roll Past Cincinnati 85-58, published November 21, 2026",
    "slug": "womens-basketball-lady-rebels-roll-past-cincinnati-85-58",
    "url": "https://unlvrebels.com/news/2026/11/21/womens-basketball-lady-rebels-roll-past-cincinnati-85-58",
    "publishedAt": "2026-11-21T20:00:00.000Z",
