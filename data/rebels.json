@@ -1,9 +1,23 @@
 {
- "generatedAt": "2026-11-24T19:15:08.647Z",
+ "generatedAt": "2026-11-24T20:14:44.466Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Stingley Named Mountain West Men’s Diver Of The Week",
+   "slug": "swimming-diving-stingley-named-mountain-west-mens-diver-of-the-week",
+   "url": "https://unlvrebels.com/news/2026/11/24/swimming-diving-stingley-named-mountain-west-mens-diver-of-the-week",
+   "publishedAt": "2026-11-24T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "UNLV Thanksgiving Turkey Tip-Off Begins Wednesday",
+   "slug": "womens-basketball-unlv-thanksgiving-turkey-tip-off-begins-wednesday",
+   "url": "https://unlvrebels.com/news/2026/11/24/womens-basketball-unlv-thanksgiving-turkey-tip-off-begins-wednesday",
+   "publishedAt": "2026-11-24T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Four Rebels Earn All-MW Volleyball Honors",
    "slug": "womens-volleyball-four-rebels-earn-all-mw-volleyball-honors",
@@ -19,16 +33,9 @@
    "precise": false
   },
   {
-   "title": "GAME 12: Cannon On The Line Saturday At Allegiant",
+   "title": "GAME 12: Cannon On The Line Saturday At Allegiant, published November 23, 2026",
    "slug": "football-game-12-cannon-on-the-line-saturday-at-allegiant",
    "url": "https://unlvrebels.com/news/2026/11/23/football-game-12-cannon-on-the-line-saturday-at-allegiant",
-   "publishedAt": "2026-11-23T20:00:00.000Z",
-   "precise": false
-  },
-  {
-   "title": "Harris Named Mountain West Offensive Player Of The Week",
-   "slug": "womens-volleyball-harris-named-mountain-west-offensive-player-of-the-week",
-   "url": "https://unlvrebels.com/news/2026/11/23/womens-volleyball-harris-named-mountain-west-offensive-player-of-the-week",
    "publishedAt": "2026-11-23T20:00:00.000Z",
    "precise": false
   },
@@ -36,6 +43,13 @@
    "title": "Game Promotions Announced for Football vs. UNR, published November 23, 2026",
    "slug": "game-promotions-announced-for-football-vs-unr",
    "url": "https://unlvrebels.com/news/2026/11/23/game-promotions-announced-for-football-vs-unr",
+   "publishedAt": "2026-11-23T20:00:00.000Z",
+   "precise": false
+  },
+  {
+   "title": "Harris Named Mountain West Offensive Player Of The Week, published November 23, 2026",
+   "slug": "womens-volleyball-harris-named-mountain-west-offensive-player-of-the-week",
+   "url": "https://unlvrebels.com/news/2026/11/23/womens-volleyball-harris-named-mountain-west-offensive-player-of-the-week",
    "publishedAt": "2026-11-23T20:00:00.000Z",
    "precise": false
   },
