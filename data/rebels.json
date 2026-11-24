@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-24T15:10:44.230Z",
+ "generatedAt": "2026-11-24T19:15:08.647Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Four Rebels Earn All-MW Volleyball Honors",
+   "slug": "womens-volleyball-four-rebels-earn-all-mw-volleyball-honors",
+   "url": "https://unlvrebels.com/news/2026/11/24/womens-volleyball-four-rebels-earn-all-mw-volleyball-honors",
+   "publishedAt": "2026-11-24T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Runnin' Rebels Bounce Back With 82-61 Victory Over Eastern Washington",
    "slug": "mens-basketball-runnin-rebels-bounce-back-with-82-61-victory-over-eastern-washington",
@@ -33,7 +40,7 @@
    "precise": false
   },
   {
-   "title": "Runnin' Rebels Return Home Monday Night Against Eastern Washington",
+   "title": "Runnin' Rebels Return Home Monday Night Against Eastern Washington, published November 22, 2026",
    "slug": "mens-basketball-runnin-rebels-return-home-monday-night-against-eastern-washington",
    "url": "https://unlvrebels.com/news/2026/11/22/mens-basketball-runnin-rebels-return-home-monday-night-against-eastern-washington",
    "publishedAt": "2026-11-22T20:00:00.000Z",
