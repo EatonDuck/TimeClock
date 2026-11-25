@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-25T21:39:58.378Z",
+ "generatedAt": "2026-11-25T22:35:14.922Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Porter Named Raising Cane's Outstanding Rebel Of The Week",
+   "slug": "general-porter-named-raising-canes-outstanding-rebel-of-the-week",
+   "url": "https://unlvrebels.com/news/2026/11/25/general-porter-named-raising-canes-outstanding-rebel-of-the-week",
+   "publishedAt": "2026-11-25T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Stingley Named Mountain West Men’s Diver Of The Week",
    "slug": "swimming-diving-stingley-named-mountain-west-mens-diver-of-the-week",
@@ -26,7 +33,7 @@
    "precise": false
   },
   {
-   "title": "Runnin' Rebels Bounce Back With 82-61 Victory Over Eastern Washington",
+   "title": "Runnin' Rebels Bounce Back With 82-61 Victory Over Eastern Washington, published November 23, 2026",
    "slug": "mens-basketball-runnin-rebels-bounce-back-with-82-61-victory-over-eastern-washington",
    "url": "https://unlvrebels.com/news/2026/11/23/mens-basketball-runnin-rebels-bounce-back-with-82-61-victory-over-eastern-washington",
    "publishedAt": "2026-11-23T20:00:00.000Z",
