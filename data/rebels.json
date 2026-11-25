@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-25T22:35:14.922Z",
+ "generatedAt": "2026-11-25T23:30:10.732Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Lady Rebels Secure 75-67 Victory Over LMU",
+   "slug": "womens-basketball-lady-rebels-secure-75-67-victory-over-lmu",
+   "url": "https://unlvrebels.com/news/2026/11/25/womens-basketball-lady-rebels-secure-75-67-victory-over-lmu",
+   "publishedAt": "2026-11-25T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Porter Named Raising Cane's Outstanding Rebel Of The Week",
    "slug": "general-porter-named-raising-canes-outstanding-rebel-of-the-week",
@@ -26,7 +33,7 @@
    "precise": false
   },
   {
-   "title": "Four Rebels Earn All-MW Volleyball Honors",
+   "title": "Four Rebels Earn All-MW Volleyball Honors, published November 24, 2026",
    "slug": "womens-volleyball-four-rebels-earn-all-mw-volleyball-honors",
    "url": "https://unlvrebels.com/news/2026/11/24/womens-volleyball-four-rebels-earn-all-mw-volleyball-honors",
    "publishedAt": "2026-11-24T20:00:00.000Z",
