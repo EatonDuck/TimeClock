@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-26T02:46:37.319Z",
+ "generatedAt": "2026-11-26T03:49:42.076Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Four Rebels Named To CSC Academic All-District Team",
+   "slug": "womens-soccer-four-rebels-named-to-csc-academic-all-district-team",
+   "url": "https://unlvrebels.com/news/2026/11/25/womens-soccer-four-rebels-named-to-csc-academic-all-district-team",
+   "publishedAt": "2026-11-25T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Five Rebels Earn CSC Academic All-District Honors",
    "slug": "mens-soccer-five-rebels-earn-csc-academic-all-district-honors",
@@ -26,7 +33,7 @@
    "precise": false
   },
   {
-   "title": "Stingley Named Mountain West Men’s Diver Of The Week",
+   "title": "Stingley Named Mountain West Men’s Diver Of The Week, published November 24, 2026",
    "slug": "swimming-diving-stingley-named-mountain-west-mens-diver-of-the-week",
    "url": "https://unlvrebels.com/news/2026/11/24/swimming-diving-stingley-named-mountain-west-mens-diver-of-the-week",
    "publishedAt": "2026-11-24T20:00:00.000Z",
