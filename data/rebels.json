@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-26T03:49:42.076Z",
+ "generatedAt": "2026-11-26T05:53:21.664Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Lady Rebels Secure 75-67 Victory Over LMU",
+   "slug": "womens-basketball-lady-rebels-secure-75-67-victory-over-lmu",
+   "url": "https://unlvrebels.com/news/2026/11/25/womens-basketball-lady-rebels-secure-75-67-victory-over-lmu",
+   "publishedAt": "2026-11-25T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Four Rebels Named To CSC Academic All-District Team",
    "slug": "womens-soccer-four-rebels-named-to-csc-academic-all-district-team",
@@ -15,13 +22,6 @@
    "title": "Five Rebels Earn CSC Academic All-District Honors",
    "slug": "mens-soccer-five-rebels-earn-csc-academic-all-district-honors",
    "url": "https://unlvrebels.com/news/2026/11/25/mens-soccer-five-rebels-earn-csc-academic-all-district-honors",
-   "publishedAt": "2026-11-25T20:00:00.000Z",
-   "precise": false
-  },
-  {
-   "title": "Lady Rebels Secure 75-67 Victory Over LMU",
-   "slug": "womens-basketball-lady-rebels-secure-75-67-victory-over-lmu",
-   "url": "https://unlvrebels.com/news/2026/11/25/womens-basketball-lady-rebels-secure-75-67-victory-over-lmu",
    "publishedAt": "2026-11-25T20:00:00.000Z",
    "precise": false
   },
