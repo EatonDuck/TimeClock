@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-25T23:30:10.732Z",
+ "generatedAt": "2026-11-26T02:46:37.319Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Five Rebels Earn CSC Academic All-District Honors",
+   "slug": "mens-soccer-five-rebels-earn-csc-academic-all-district-honors",
+   "url": "https://unlvrebels.com/news/2026/11/25/mens-soccer-five-rebels-earn-csc-academic-all-district-honors",
+   "publishedAt": "2026-11-25T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Lady Rebels Secure 75-67 Victory Over LMU",
    "slug": "womens-basketball-lady-rebels-secure-75-67-victory-over-lmu",
@@ -26,7 +33,7 @@
    "precise": false
   },
   {
-   "title": "UNLV Thanksgiving Turkey Tip-Off Begins Wednesday",
+   "title": "UNLV Thanksgiving Turkey Tip-Off Begins Wednesday, published November 24, 2026",
    "slug": "womens-basketball-unlv-thanksgiving-turkey-tip-off-begins-wednesday",
    "url": "https://unlvrebels.com/news/2026/11/24/womens-basketball-unlv-thanksgiving-turkey-tip-off-begins-wednesday",
    "publishedAt": "2026-11-24T20:00:00.000Z",
