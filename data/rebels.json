@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-27T15:05:04.644Z",
+ "generatedAt": "2026-11-27T17:20:13.501Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Runnin' Rebels Host UTRGV On Saturday For Last Game At TMC Until Dec. 22",
+   "slug": "mens-basketball-runnin-rebels-host-utrgv-on-saturday-for-last-game-at-tmc-until-dec-22",
+   "url": "https://unlvrebels.com/news/2026/11/27/mens-basketball-runnin-rebels-host-utrgv-on-saturday-for-last-game-at-tmc-until-dec-22",
+   "publishedAt": "2026-11-27T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Lady Rebels Secure 75-67 Victory Over LMU",
    "slug": "womens-basketball-lady-rebels-secure-75-67-victory-over-lmu",
@@ -26,7 +33,7 @@
    "precise": false
   },
   {
-   "title": "Porter Named Raising Cane's Outstanding Rebel Of The Week",
+   "title": "Porter Named Raising Cane's Outstanding Rebel Of The Week, published November 25, 2026",
    "slug": "general-porter-named-raising-canes-outstanding-rebel-of-the-week",
    "url": "https://unlvrebels.com/news/2026/11/25/general-porter-named-raising-canes-outstanding-rebel-of-the-week",
    "publishedAt": "2026-11-25T20:00:00.000Z",
