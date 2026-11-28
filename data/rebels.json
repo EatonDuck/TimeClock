@@ -1,9 +1,16 @@
 {
- "generatedAt": "2026-11-27T23:58:03.234Z",
+ "generatedAt": "2026-11-28T02:16:00.736Z",
  "timezone": "America/Los_Angeles",
  "coveredThrough": null,
  "events": [],
  "news": [
+  {
+   "title": "Lady Rebels Suffer 72-54 Loss Against Butler",
+   "slug": "womens-basketball-lady-rebels-suffer-72-54-loss-against-butler",
+   "url": "https://unlvrebels.com/news/2026/11/27/womens-basketball-lady-rebels-suffer-72-54-loss-against-butler",
+   "publishedAt": "2026-11-27T20:00:00.000Z",
+   "precise": false
+  },
   {
    "title": "Runnin' Rebels Host UTRGV On Saturday For Last Game At TMC Until Dec. 22",
    "slug": "mens-basketball-runnin-rebels-host-utrgv-on-saturday-for-last-game-at-tmc-until-dec-22",
@@ -26,7 +33,7 @@
    "precise": false
   },
   {
-   "title": "Five Rebels Earn CSC Academic All-District Honors",
+   "title": "Five Rebels Earn CSC Academic All-District Honors, published November 25, 2026",
    "slug": "mens-soccer-five-rebels-earn-csc-academic-all-district-honors",
    "url": "https://unlvrebels.com/news/2026/11/25/mens-soccer-five-rebels-earn-csc-academic-all-district-honors",
    "publishedAt": "2026-11-25T20:00:00.000Z",
